@@ -3,13 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29318.209
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01. Sum Seconds", "01. Sum Seconds\01. Sum Seconds.csproj", "{011534B3-DBFB-4120-A9C6-090A3E2E67E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01. Sum Seconds", "01. Sum Seconds\01. Sum Seconds.csproj", "{011534B3-DBFB-4120-A9C6-090A3E2E67E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02. Bonus Score", "02. Bonus Score\02. Bonus Score.csproj", "{9573B1F5-9830-46AA-9021-BDD4870D16A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02. Bonus Score", "02. Bonus Score\02. Bonus Score.csproj", "{9573B1F5-9830-46AA-9021-BDD4870D16A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03. Speed Info", "03. Speed Info\03. Speed Info.csproj", "{17E916BF-2854-480D-AB56-3E9F09055B22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03. Speed Info", "03. Speed Info\03. Speed Info.csproj", "{17E916BF-2854-480D-AB56-3E9F09055B22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04. Metric Converter", "04. Metric Converter\04. Metric Converter.csproj", "{5AB6B88C-265D-4ABE-9757-5821804EF2EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04. Metric Converter", "04. Metric Converter\04. Metric Converter.csproj", "{5AB6B88C-265D-4ABE-9757-5821804EF2EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05. Time + 15 Minutes", "05. Time + 15 Minutes\05. Time + 15 Minutes.csproj", "{66BD3E91-3BF2-4A3F-8BA8-3F3FF2DD83D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06. Godzilla vs. Kong", "06. Godzilla vs. Kong\06. Godzilla vs. Kong.csproj", "{10BDDED1-C341-4426-A2E8-2D76008EE562}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07. World Swimming Record", "07. World Swimming Record\07. World Swimming Record.csproj", "{65F1313B-3722-4C88-8CF0-C2F69E4160EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08. Scholarship", "08. Scholarship\08. Scholarship.csproj", "{4E1CA158-BA75-48E7-874F-893CB3BC3E92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +41,22 @@ Global
 		{5AB6B88C-265D-4ABE-9757-5821804EF2EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AB6B88C-265D-4ABE-9757-5821804EF2EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AB6B88C-265D-4ABE-9757-5821804EF2EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66BD3E91-3BF2-4A3F-8BA8-3F3FF2DD83D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66BD3E91-3BF2-4A3F-8BA8-3F3FF2DD83D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66BD3E91-3BF2-4A3F-8BA8-3F3FF2DD83D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66BD3E91-3BF2-4A3F-8BA8-3F3FF2DD83D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10BDDED1-C341-4426-A2E8-2D76008EE562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10BDDED1-C341-4426-A2E8-2D76008EE562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10BDDED1-C341-4426-A2E8-2D76008EE562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10BDDED1-C341-4426-A2E8-2D76008EE562}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65F1313B-3722-4C88-8CF0-C2F69E4160EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65F1313B-3722-4C88-8CF0-C2F69E4160EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65F1313B-3722-4C88-8CF0-C2F69E4160EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65F1313B-3722-4C88-8CF0-C2F69E4160EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E1CA158-BA75-48E7-874F-893CB3BC3E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E1CA158-BA75-48E7-874F-893CB3BC3E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E1CA158-BA75-48E7-874F-893CB3BC3E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E1CA158-BA75-48E7-874F-893CB3BC3E92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
