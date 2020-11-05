@@ -60,7 +60,6 @@ namespace _08._Scholarship
             else
             {
                 Console.WriteLine("You cannot get a scholarship!");
-
             }
         }
     }
