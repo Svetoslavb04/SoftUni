@@ -22,7 +22,7 @@ namespace _03._Sum_Prime_Non_Prime
 
                 if (number < 0)
                 {
-                    Console.WriteLine("Number is negative");
+                    Console.WriteLine("Number is negative.");
                 }
                 else
                 {

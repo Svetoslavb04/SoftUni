@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03. Sum Prime Non Prime", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04. Train The Trainers", "04. Train The Trainers\04. Train The Trainers.csproj", "{C6D29D8E-C00A-442E-BE15-9FC37056058A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05. Password Generator", "05. Password Generator\05. Password Generator.csproj", "{E9F41AFB-BC0A-4F29-99D9-CE4F37DE07D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C6D29D8E-C00A-442E-BE15-9FC37056058A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6D29D8E-C00A-442E-BE15-9FC37056058A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6D29D8E-C00A-442E-BE15-9FC37056058A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9F41AFB-BC0A-4F29-99D9-CE4F37DE07D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9F41AFB-BC0A-4F29-99D9-CE4F37DE07D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9F41AFB-BC0A-4F29-99D9-CE4F37DE07D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9F41AFB-BC0A-4F29-99D9-CE4F37DE07D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
