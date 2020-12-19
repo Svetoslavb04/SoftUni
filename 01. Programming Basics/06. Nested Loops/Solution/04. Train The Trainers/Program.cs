@@ -31,7 +31,7 @@ namespace _04._Train_The_Trainers
                 avgGrade = avgGrade / n;
                 avgGradeAtAll += avgGrade;
 
-                Console.WriteLine($"{input} - {avgGrade:f2}");
+                Console.WriteLine($"{input} - {avgGrade:f2}.");
             }
 
             Console.WriteLine($"Student's final assessment is {avgGradeAtAll / totalPresentations:F2}.");
