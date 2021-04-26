@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Activation Keys", "Activation Keys\Activation Keys.csproj", "{86DA523B-A9E8-4AA1-A8AA-44C8A0178934}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86DA523B-A9E8-4AA1-A8AA-44C8A0178934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86DA523B-A9E8-4AA1-A8AA-44C8A0178934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86DA523B-A9E8-4AA1-A8AA-44C8A0178934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86DA523B-A9E8-4AA1-A8AA-44C8A0178934}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9C52D689-ADA4-46A9-951B-C7B0F1827781}
+	EndGlobalSection
+EndGlobal
