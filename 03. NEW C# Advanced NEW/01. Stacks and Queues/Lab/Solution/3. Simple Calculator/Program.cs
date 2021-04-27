@@ -17,7 +17,6 @@ namespace _3._Simple_Calculator
             for (int i = line.Length - 1; i >= 0; i--)
             {
                 stack.Push(line[i]);
-
             }
 
             output += int.Parse(stack.Pop());
