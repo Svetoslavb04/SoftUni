@@ -5,11 +5,21 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1. Basic Stack Operations", "1. Basic Stack Operations\1. Basic Stack Operations.csproj", "{FE823045-1F60-4F3E-9468-F3FA62BEEB36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2. Basic Queue Operations", "2. Basic Queue Operations\2. Basic Queue Operations.csproj", "{A8ACFE72-CAFB-4986-8BC3-0F40C39E0DF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2. Basic Queue Operations", "2. Basic Queue Operations\2. Basic Queue Operations.csproj", "{A8ACFE72-CAFB-4986-8BC3-0F40C39E0DF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3. Maximum and Minimum Element", "3. Maximum and Minimum Element\3. Maximum and Minimum Element.csproj", "{33F00A61-9E7B-45C9-B687-6762CFA2124F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3. Maximum and Minimum Element", "3. Maximum and Minimum Element\3. Maximum and Minimum Element.csproj", "{33F00A61-9E7B-45C9-B687-6762CFA2124F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4. Fast Food", "4. Fast Food\4. Fast Food.csproj", "{B60FB947-EF03-4854-B961-AA8A0AE72186}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4. Fast Food", "4. Fast Food\4. Fast Food.csproj", "{B60FB947-EF03-4854-B961-AA8A0AE72186}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5. Fashion Boutique", "5. Fashion Boutique\5. Fashion Boutique.csproj", "{980660FB-6F49-47B2-BBAB-579E6F58EB99}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06. Songs Queue", "06. Songs Queue\06. Songs Queue.csproj", "{1DC68A27-217A-445D-8371-798E655E931F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07. Truck Tour", "07. Truck Tour\07. Truck Tour.csproj", "{C3FDDBCC-ED74-42DD-9CD0-D5650BE52611}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08. Balanced Parenthesis", "08. Balanced Parenthesis\08. Balanced Parenthesis.csproj", "{A87B6FE2-10DC-4D78-9568-E1E68F14396B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9. Simple Text Editor", "9. Simple Text Editor\9. Simple Text Editor.csproj", "{96322A09-0DAB-4EB9-84F7-97A4D54F679D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +43,26 @@ Global
 		{B60FB947-EF03-4854-B961-AA8A0AE72186}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B60FB947-EF03-4854-B961-AA8A0AE72186}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B60FB947-EF03-4854-B961-AA8A0AE72186}.Release|Any CPU.Build.0 = Release|Any CPU
+		{980660FB-6F49-47B2-BBAB-579E6F58EB99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{980660FB-6F49-47B2-BBAB-579E6F58EB99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{980660FB-6F49-47B2-BBAB-579E6F58EB99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{980660FB-6F49-47B2-BBAB-579E6F58EB99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DC68A27-217A-445D-8371-798E655E931F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DC68A27-217A-445D-8371-798E655E931F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DC68A27-217A-445D-8371-798E655E931F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DC68A27-217A-445D-8371-798E655E931F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3FDDBCC-ED74-42DD-9CD0-D5650BE52611}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3FDDBCC-ED74-42DD-9CD0-D5650BE52611}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3FDDBCC-ED74-42DD-9CD0-D5650BE52611}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3FDDBCC-ED74-42DD-9CD0-D5650BE52611}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A87B6FE2-10DC-4D78-9568-E1E68F14396B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A87B6FE2-10DC-4D78-9568-E1E68F14396B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A87B6FE2-10DC-4D78-9568-E1E68F14396B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A87B6FE2-10DC-4D78-9568-E1E68F14396B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96322A09-0DAB-4EB9-84F7-97A4D54F679D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96322A09-0DAB-4EB9-84F7-97A4D54F679D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96322A09-0DAB-4EB9-84F7-97A4D54F679D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96322A09-0DAB-4EB9-84F7-97A4D54F679D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
