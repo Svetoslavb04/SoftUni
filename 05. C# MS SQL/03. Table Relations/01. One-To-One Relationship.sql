@@ -1,0 +1,14 @@
+CREATE TABLE Passports(
+	PassportID INT IDENTITY PRIMARY KEY NOT NULL,
+	PassportNumber NVARCHAR(50) NOT NULL
+)
+
+CREATE TABLE Persons(
+	PersonID INT IDENTITY PRIMARY KEY,
+	FirstName NVARCHAR(20) NOT NULL,
+	LastName NVARCHAR(20) NOT NULL,
+	PassportID INT NOT NULL,
+
+	CONSTRAINT FK_Persons_Passports
+	FOREIGN KEY (PassportID) REFERENCES  Passports(PassportID)
+)
