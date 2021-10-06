@@ -1,18 +1,20 @@
-CREATE FUNCTION ufn_IsWordComprised(@setOfLetters NVARCHAR(100), @word NVARCHAR(100))
+CREATE FUNCTION ufn_IsWordComprised(@setOfLetters NVARCHAR(200), @word NVARCHAR(50))
 RETURNS INT
 AS
 BEGIN
-	DECLARE @Count INT = 1
-	DECLARE @Letter VARCHAR(1)
+	DECLARE @count INT = 1;
+	DECLARE @letter NVARCHAR;
 
-	WHILE (LEN(@word) >= @Count)
+	WHILE @count <= LEN(@word)
 	BEGIN
-		SET @Letter = SUBSTRING(@word, @Count, 1)
+		
+		SET @letter = SUBSTRING(@word, @count, 1)
 
-		IF @setOfLetters NOT LIKE '%' + @Letter + '%'
+		IF @setOfLetters NOT LIKE '%' + @letter + '%'
 			RETURN 0
 
-		SET @Count += 1
-	END
-	RETURN 1 
+		SET @count += 1;
+	END;
+
+	RETURN 1
 END
