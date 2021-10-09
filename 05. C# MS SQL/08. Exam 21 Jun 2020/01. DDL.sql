@@ -1,0 +1,99 @@
+CREATE TABLE Clients
+(
+	ClientId INT IDENTITY PRIMARY KEY
+	, FirstName NVARCHAR(50) NOT NULL
+	, LastName NVARCHAR(50) NOT NULL
+	, Phone VARCHAR(12) NOT NULL
+
+	, CONSTRAINT CHK_PhoneLength CHECK (LEN(Phone) = 12) 
+)
+
+CREATE TABLE Mechanics
+(
+	MechanicId INT IDENTITY PRIMARY KEY
+	, FirstName NVARCHAR(50) NOT NULL
+	, LastName NVARCHAR(50) NOT NULL
+	, [Address] NVARCHAR(255) NOT NULL
+)
+
+CREATE TABLE Models
+(
+	ModelId INT IDENTITY PRIMARY KEY
+	, [Name] NVARCHAR(50) UNIQUE NOT NULL 
+)
+
+CREATE TABLE Jobs
+(
+	JobId INT IDENTITY PRIMARY KEY
+	, ModelId INT NOT NULL
+	, [Status] NVARCHAR(11) NOT NULL DEFAULT 'Pending'
+	, ClientId INT NOT NULL
+	, MechanicId INT
+	, IssueDate DATE NOT NULL
+	, FinishDate DATE 
+
+	, CONSTRAINT CHK_ValidStatus CHECK (Status IN('Pending', 'In Progress', 'Finished'))
+	, CONSTRAINT FK_Jobs_ModelId FOREIGN KEY(ModelId) REFERENCES Models(ModelId)
+	, CONSTRAINT FK_Jobs_ClientId FOREIGN KEY(ClientId) REFERENCES Clients(ClientId)
+	, CONSTRAINT FK_Jobs_MechanicId FOREIGN KEY(MechanicId) REFERENCES Mechanics(MechanicId)
+)
+
+CREATE TABLE Orders
+(
+	OrderId INT IDENTITY PRIMARY KEY
+	, JobId INT NOT NULL
+	, IssueDate DATE NOT NULL
+	, Delivered BIT DEFAULT 0
+
+	, CONSTRAINT FK_Orders_JobId FOREIGN KEY(JobId) REFERENCES Jobs(JobId)
+)
+
+CREATE TABLE Vendors
+(
+	VendorId INT IDENTITY PRIMARY KEY
+	, [Name] NVARCHAR(50) UNIQUE NOT NULL
+)
+
+CREATE TABLE Parts
+(
+	PartId INT IDENTITY PRIMARY KEY
+	, SerialNumber NVARCHAR(50) UNIQUE NOT NULL
+	, [Description] NVARCHAR(255)
+	, Price MONEY NOT NULL
+	, VendorId INT NOT NULL
+	, StockQty INT NOT NULL DEFAULT 0
+
+	, CONSTRAINT CHK_PriceNotNegativeOrZero CHECK (Price > 0)
+	, CONSTRAINT FK_Parts_VendorId FOREIGN KEY(VendorId) REFERENCES Vendors(VendorId)
+)
+
+CREATE TABLE OrderParts
+(
+	OrderId INT NOT NULL
+	, PartId INT NOT NULL
+	, Quantity INT NOT NULL DEFAULT 1
+
+	, CONSTRAINT CHK_PartsNeeded_QuantityNotNegativeOrZero CHECK (Quantity > 0)
+	, CONSTRAINT PK_OrderParts_OrderIdPartId PRIMARY KEY(OrderId,PartId)
+	, CONSTRAINT FK_OrderParts_OrderId FOREIGN KEY(OrderId) REFERENCES Orders(OrderId)
+	, CONSTRAINT FK_OrderParts_PartID FOREIGN KEY(PartID) REFERENCES Parts(PartID)
+)
+
+CREATE TABLE PartsNeeded
+(
+	JobId INT NOT NULL
+	, PartId INT NOT NULL
+	, Quantity INT NOT NULL DEFAULT 1
+
+	, CONSTRAINT CHK_QuantityNotNegativeOrZero CHECK (Quantity > 0)
+	, CONSTRAINT PK_PartsNeeded_JobIdPartId PRIMARY KEY(JobId,PartId)
+	, CONSTRAINT FK_PartsNeeded_JobId FOREIGN KEY(JobId) REFERENCES Jobs(JobId)
+	, CONSTRAINT FK_PartsNeeded_PartID FOREIGN KEY(PartID) REFERENCES Parts(PartID)
+)
+
+
+
+
+
+
+
