@@ -32,5 +32,3 @@ function Cooking(number, operation1, operation2, operation3, operation4, operati
     result = doOperation(result, operation4);
     result = doOperation(result, operation5); 
 }
-
-Cooking('9', 'dice', 'spice', 'chop', 'bake', 'fillet')
