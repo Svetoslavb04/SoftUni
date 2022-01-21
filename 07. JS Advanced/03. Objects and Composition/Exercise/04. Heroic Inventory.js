@@ -12,6 +12,3 @@ function solve(arr) {
 
     console.log(JSON.stringify(heroes));
 }
-
-solve(['Isacc / 25 / ']
-);
