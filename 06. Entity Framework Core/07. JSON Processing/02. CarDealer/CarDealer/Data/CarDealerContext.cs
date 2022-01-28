@@ -17,7 +17,6 @@ namespace CarDealer.Data
         }
 
         public DbSet<Car> Cars { get; set; }
-
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Part> Parts { get; set; }
         public DbSet<PartCar> PartCars { get; set; }
