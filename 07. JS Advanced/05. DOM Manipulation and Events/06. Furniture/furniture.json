@@ -8,8 +8,8 @@
     },
     {
         "img":"https://www.stylespafurniture.com/wp-content/uploads/2020/03/Cove_3_Door_Wardrobe_1.jpg",
-        "price": "120",
         "name": "Wardrobe",
+        "price": "120",
         "decFactor":"1.2"
     }
 ]
