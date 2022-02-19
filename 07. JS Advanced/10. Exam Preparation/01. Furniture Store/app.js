@@ -8,6 +8,8 @@ function solve() {
     let priceInputElement = document.querySelector('#price');
 
     function addHandler(e) {
+
+        console.log(this);
         e.preventDefault();
 
         let model = modelInputElement.value;
