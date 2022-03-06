@@ -1,6 +1,6 @@
 function loadStudents() {
     let tbodyElement = document.querySelector('tbody');
-
+    tbodyElement.innerHTML = '';
     fetch('http://localhost:3030/jsonstore/collections/students')
         .then((res) => res.json())
         .then((data) => {
@@ -27,18 +27,31 @@ function loadStudents() {
         })
 }
 
-function createStudent() {
+async function createStudent(e) {
+    e.preventDefault();
+
     let firstName = document.querySelector('.inputs input:nth-child(1)').value;
     let lastName = document.querySelector('.inputs input:nth-child(2)').value;
     let facultyNum = document.querySelector('.inputs input:nth-child(3)').value;
     let grade = document.querySelector('.inputs input:nth-child(4)').value;
 
-    console.log(firstName);
+    if (!firstName || !lastName || !facultyNum || !grade || isNaN(Number(facultyNum)) || isNaN(Number(grade)) || /[^a-zA-Z]/.test(firstName) || /[^a-zA-Z]/.test(lastName)) {
+        alert('Invalid data');
+        return;
+    }
 
-    let firstNameElement = document.createElement('td');
-    let lastNameElement = document.createElement('td');
-    let facultyNumElement = document.createElement('td');
-    let gradeElement = document.createElement('td');
+    await fetch('http://localhost:3030/jsonstore/collections/students', {
+        method: 'POST',
+        body: JSON.stringify({
+            firstName,
+            lastName,
+            'facultyNumber': facultyNum,
+            grade: Number(grade).toFixed(2)
+        })
+    })
+    .catch((err)=> console.log(err));
+    
+    loadStudents();
 }
 
 let createButtonElement = document.getElementById('submit');
