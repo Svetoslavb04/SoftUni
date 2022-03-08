@@ -107,6 +107,7 @@ async function displayCatches() {
                 catchesElement.appendChild(catchElement);
             });
         })
+        .catch(err => console.log(err));
 }
 
 function createCatchElement(jsonData) {
@@ -224,7 +225,10 @@ async function login(e) {
         sessionStorage.setItem('_id', data._id);
         sessionStorage.setItem('authToken', data.accessToken);
 
-        loginSectionElement.remove();
+        authToken = data.accessToken;
+        username = data.username;
+        user_id = data._id;
+
         displayHome();
     }
     } catch (error) {
@@ -275,7 +279,10 @@ async function register(e) {
         sessionStorage.setItem('_id', data._id);
         sessionStorage.setItem('authToken', data.accessToken);
 
-        loginSectionElement.remove();
+        authToken = data.accessToken;
+        username = data.username;
+        user_id = data._id;
+
         displayHome();
     }
     } catch (error) {
@@ -293,6 +300,11 @@ async function logout() {
             }
         });
         sessionStorage.clear();
+
+        authToken = undefined;
+        username = undefined;
+        user_id = undefined;
+
         displayHome();
     } catch (error) {
         console.log(error.message);
@@ -336,20 +348,52 @@ async function addCatch(e) {
     } catch (error) {
         console.log(error.message);
     }
-    
 }
 
 async function updateCatch(e) {
+    let catchElementChildren = e.currentTarget.parentNode.children;
 
+    let angler = catchElementChildren[1].value;
+    let weight = catchElementChildren[3].value;
+    let species = catchElementChildren[5].value;
+    let location = catchElementChildren[7].value;
+    let bait = catchElementChildren[9].value;
+    let captureTime = catchElementChildren[11].value;
+
+    try {
+        let id = e.currentTarget.getAttribute('data-id');
+
+        await fetch(`http://localhost:3030/data/catches/${id}`, {
+            method: 'PUT',
+            headers: {
+                'X-Authorization': authToken
+            },
+            body: JSON.stringify({
+                '_ownerId': user_id,
+                angler,
+                weight,
+                species,
+                location,
+                bait,
+                captureTime
+            })
+        });
+        
+        displayCatches();
+    } catch (error) {
+        console.log(error.message);
+    }
 }
 
-async function deleteCatch(e) {//RETURNS FORBIDEN
+async function deleteCatch(e) {
     let id = e.currentTarget.getAttribute('data-id');
 
-    fetch(`http://localhost:3030/data/catches/${id}`, {
+    await fetch(`http://localhost:3030/data/catches/${id}`, {
         method: 'DELETE',
         headers: {
-            'X-Authorization': user_id
+            'X-Authorization': authToken
         }
     });
+
+    displayCatches();
 }
