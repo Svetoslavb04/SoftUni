@@ -21,34 +21,10 @@ function SetUp() {
 
     mainElement.appendChild(homeSectionElement);   
     
-    let homeButtonElement = document.getElementById('home');
-    let loginButtonElement = document.getElementById('login');
-    let registerButtonElement = document.getElementById('register');
-    let logoutButtonElement = document.getElementById('logout');
-
-
-    homeButtonElement.addEventListener('click', displayHome);
-    loginButtonElement.addEventListener('click', displayLogin);
-    registerButtonElement.addEventListener('click', displayRegister);
-    logoutButtonElement.addEventListener('click', logout);
-
-    let loadButtonElement = document.querySelector('.load');
-    loadButtonElement.addEventListener('click', displayCatches);
-
-    let addButtonElement = document.querySelector('.add');
-    addButtonElement.addEventListener('click', addCatch);
-
-    if (authToken) {
-        greetingNameElement.textContent = username;
-        loginButtonElement.style.display = 'none';
-        registerButtonElement.style.display = 'none';
-    } else {
-        greetingNameElement.textContent = 'guest';
-        logoutButtonElement.style.display = 'none';
-    }
+    displayHome();
 }
 
-SetUp();
+window.onload = SetUp;
 
 function displayLogin() {
     mainElement.innerHTML = '';
@@ -82,11 +58,20 @@ function displayHome() {
 
     displayCatches();
 
+    let homeButtonElement = document.getElementById('home');
     let loginButtonElement = document.getElementById('login');
     let registerButtonElement = document.getElementById('register');
     let logoutButtonElement = document.getElementById('logout');
+    let loadButtonElement = document.querySelector('.load');
     let addButtonElement = document.querySelector('.add');
-    
+
+    homeButtonElement.addEventListener('click', displayHome);
+    loginButtonElement.addEventListener('click', displayLogin);
+    registerButtonElement.addEventListener('click', displayRegister);
+    logoutButtonElement.addEventListener('click', logout);
+    loadButtonElement.addEventListener('click', displayCatches);
+    addButtonElement.addEventListener('click', addCatch);
+
     if (authToken) {
         greetingNameElement.textContent = username;
 
@@ -201,6 +186,7 @@ function createCatchElement(jsonData) {
     updateButton.textContent = 'Update';
     catchDivElement.appendChild(updateButton);
     if (user_id != jsonData._ownerId) { updateButton.disabled = true;}
+    else { updateButton.addEventListener('click', updateCatch); }
 
     let deleteButton= document.createElement('button');
     deleteButton.classList.add('delete');
@@ -208,6 +194,7 @@ function createCatchElement(jsonData) {
     deleteButton.textContent = 'Delete';
     catchDivElement.appendChild(deleteButton);
     if (user_id != jsonData._ownerId) { deleteButton.disabled = true;}
+    else { deleteButton.addEventListener('click', deleteCatch); }
 
     return catchDivElement;
 }
@@ -314,19 +301,19 @@ async function logout() {
 
 async function addCatch(e) {
     e.preventDefault();
-    //to fix undefined formdata
-    let formData = e.currentTarget.parentNode.parentNode.formData;
+    
+    let formElement = e.currentTarget.parentNode.form;
 
     if (!authToken) {
         return;
     }
 
-    let angler = formData.getItem('angler');
-    let weight = formData.getItem('weight');
-    let species = formData.getItem('species');
-    let location = formData.getItem('location');
-    let bait = formData.getItem('bait');
-    let captureTime = formData.getItem('captureTime');
+    let angler = formElement[1].value;
+    let weight = formElement[2].value;
+    let species = formElement[3].value;
+    let location = formElement[4].value;
+    let bait = formElement[5].value;
+    let captureTime = formElement[6].value;
 
     try {
         fetch('http://localhost:3030/data/catches', {
@@ -344,9 +331,25 @@ async function addCatch(e) {
                 captureTime
             })
         });
-
+        
+        displayCatches();
     } catch (error) {
         console.log(error.message);
     }
     
+}
+
+async function updateCatch(e) {
+
+}
+
+async function deleteCatch(e) {//RETURNS FORBIDEN
+    let id = e.currentTarget.getAttribute('data-id');
+
+    fetch(`http://localhost:3030/data/catches/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'X-Authorization': user_id
+        }
+    });
 }
