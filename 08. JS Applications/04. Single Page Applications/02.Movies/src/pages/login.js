@@ -2,10 +2,10 @@ import { updateSession } from '../auth.js';
 import { displayNavigation, displayFooter } from './layout.js';
 import { navigateTo } from '../router.js';
 
-let containerDiv = document.getElementById('container');
-let loginSection = document.getElementById('form-login');
+const containerDiv = document.getElementById('container');
+const loginSection = document.getElementById('form-login');
 
-let loginForm = loginSection.children[0];
+const loginForm = loginSection.children[0];
 
 loginForm.addEventListener('submit', loginHandler);
 
@@ -25,7 +25,7 @@ async function loginHandler(e) {
     const password = formdata.get('password');
 
     try {
-        let response = await fetch('http://localhost:3030/users/login', {
+        const response = await fetch('http://localhost:3030/users/login', {
         method: 'POST',
         headers: { 'Content-type' : 'application/json'},
         body: JSON.stringify({
@@ -34,7 +34,7 @@ async function loginHandler(e) {
         })
     });
     
-    let data = await response.json();
+    const data = await response.json();
 
     if (response.status != 200) {
         throw Error(data.message);
@@ -46,6 +46,7 @@ async function loginHandler(e) {
 
     } catch (error) {
         alert(error.message);
+        displayLogin();
     }
 }
 

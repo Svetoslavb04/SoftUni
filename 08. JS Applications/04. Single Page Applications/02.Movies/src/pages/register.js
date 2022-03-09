@@ -2,10 +2,10 @@ import { updateSession } from '../auth.js';
 import { displayNavigation, displayFooter } from './layout.js';
 import { navigateTo } from '../router.js';
 
-let containerDiv = document.getElementById('container');
-let registerSection = document.getElementById('form-sign-up');
+const containerDiv = document.getElementById('container');
+const registerSection = document.getElementById('form-sign-up');
 
-let registerForm = registerSection.children[0];
+const registerForm = registerSection.children[0];
 
 registerForm.addEventListener('submit', registerHandler);
 
@@ -39,7 +39,7 @@ async function registerHandler(e) {
             username = email;
         }
 
-        let response = await fetch('http://localhost:3030/users/register', {
+        const response = await fetch('http://localhost:3030/users/register', {
         method: 'POST',
         headers: { 'Content-type' : 'application/json'},
         body: JSON.stringify({
@@ -49,7 +49,7 @@ async function registerHandler(e) {
             })
         });
     
-        let data = await response.json();
+        const data = await response.json();
 
         if (response.status != 200) {
             throw Error(data.message);
@@ -61,6 +61,7 @@ async function registerHandler(e) {
 
     } catch (error) {
         alert(error.message);
+        displayRegister();
     }
 }
 

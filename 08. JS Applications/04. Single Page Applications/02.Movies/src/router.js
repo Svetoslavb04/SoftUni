@@ -1,17 +1,17 @@
 import { displayHome } from './pages/home.js';
 import { displayLogin } from './pages/login.js';
-import { displayLogout } from './pages/logout.js';
+import { logout } from './pages/logout.js';
 import { displayRegister } from './pages/register.js';
 import { displayAddMovie } from './pages/addMovie.js';
 
-let containerDiv = document.querySelector('#container');
-let navbarNav = containerDiv.children[0];
+const containerDiv = document.querySelector('#container');
+
 let routes = {
     '/': displayHome,
     '/login': displayLogin,
-    '/logout': displayLogout,
+    '/logout': logout,
     '/register': displayRegister,
-    '/addMovie': displayAddMovie
+    '/addMovie': displayAddMovie,
 };
 
 export function navigateTo(path) {

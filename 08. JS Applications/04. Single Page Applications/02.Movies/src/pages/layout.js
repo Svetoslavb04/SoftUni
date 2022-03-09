@@ -1,14 +1,14 @@
-import { updateAuth, isAuthenticated, username } from '../auth.js';
+import { isAuthenticated, username, updateAuth } from '../auth.js';
 import { navigateTo } from '../router.js';
 
-let containerElement = document.querySelector('#container');
-let navbarNavElement = document.querySelector('#container > nav');
-let navbarList = navbarNavElement.children[1];
+const containerElement = document.querySelector('#container');
+const navbarNavElement = document.querySelector('#container > nav');
+const navbarList = navbarNavElement.children[1];
 
-let greetingAncher = navbarList.querySelector('#greeting');
-let loginAncher = navbarList.querySelector('#login');
-let logoutAncher = navbarList.querySelector('#logout');
-let registerAncher = navbarList.querySelector('#register');
+const greetingAncher = navbarList.querySelector('#greeting');
+const loginAncher = navbarList.querySelector('#login');
+const logoutAncher = navbarList.querySelector('#logout');
+const registerAncher = navbarList.querySelector('#register');
 
 navbarNavElement.addEventListener('click', (e) => {
     if (e.target.tagName == 'A') {
@@ -20,7 +20,7 @@ navbarNavElement.addEventListener('click', (e) => {
     }
 });
 
-let footerElement = document.querySelector('.page-footer');
+const footerElement = document.querySelector('.page-footer');
 
 export function displayNavigation() {
     containerElement.appendChild(navbarNavElement);

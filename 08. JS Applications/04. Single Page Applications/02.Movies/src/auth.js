@@ -1,7 +1,7 @@
 export let email = sessionStorage.getItem('email');
 export let username = sessionStorage.getItem('username');
 export let _id = sessionStorage.getItem('_id');
-let authToken = sessionStorage.getItem('authToken');
+export let authToken = sessionStorage.getItem('authToken');
 
 export let isAuthenticated;
 
@@ -21,10 +21,21 @@ export function updateAuth() {
 }
 
 export function updateSession(email, username, _id, authToken) {
-    sessionStorage.getItem('email', email);
+    sessionStorage.setItem('email', email);
     sessionStorage.setItem('username', username);
     sessionStorage.setItem('_id', _id);
     sessionStorage.setItem('authToken', authToken);
+
+    updateAuth();
+}
+
+export function clearSession() {
+    sessionStorage.clear();
+
+    email = null;
+    username = null;
+    _id = null;
+    authToken = null;
 
     updateAuth();
 }
