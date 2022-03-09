@@ -19,3 +19,12 @@ export function updateAuth() {
         username = 'guest';
     }
 }
+
+export function updateSession(email, username, _id, authToken) {
+    sessionStorage.getItem('email', email);
+    sessionStorage.setItem('username', username);
+    sessionStorage.setItem('_id', _id);
+    sessionStorage.setItem('authToken', authToken);
+
+    updateAuth();
+}

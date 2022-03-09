@@ -2,14 +2,16 @@ import { displayHome } from './pages/home.js';
 import { displayLogin } from './pages/login.js';
 import { displayLogout } from './pages/logout.js';
 import { displayRegister } from './pages/register.js';
+import { displayAddMovie } from './pages/addMovie.js';
 
 let containerDiv = document.querySelector('#container');
 let navbarNav = containerDiv.children[0];
 let routes = {
-    '/home': displayHome,
+    '/': displayHome,
     '/login': displayLogin,
     '/logout': displayLogout,
     '/register': displayRegister,
+    '/addMovie': displayAddMovie
 };
 
 export function navigateTo(path) {
@@ -23,6 +25,4 @@ function hideAllSections() {
         .forEach(c => {
             c.remove();
         });
-    
-    containerDiv.appendChild(navbarNav);
 }
