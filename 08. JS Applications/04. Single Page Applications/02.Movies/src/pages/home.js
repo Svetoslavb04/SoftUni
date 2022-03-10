@@ -1,12 +1,19 @@
 import { displayNavigation, displayFooter } from './layout.js';
 import { isAuthenticated } from '../auth.js';
 import { getAllMoviesPreviewElements } from '../services/movieService.js';
+import { navigateTo } from '../router.js';
 
 const containerDiv = document.getElementById('container');
 const homeSection = containerDiv.querySelector('#home-page');
 const moviesHeader = containerDiv.querySelector('#container > h1');
 const addMovieButton = containerDiv.querySelector('#add-movie-button');
 const moviesSection = containerDiv.querySelector('#movie');
+
+addMovieButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    navigateTo('/add-movie');
+});
 
 export function displayHome() {
     displayNavigation();
@@ -20,11 +27,14 @@ export function displayHome() {
 
     getAllMoviesPreviewElements()
         .then(movies => {
-            let moviesCount = movies.length;
 
             let currentMoviesInRowCount = 0;
             let totalDecks = 0;
             let movieSubclassRow = moviesSection.children[0].children[0];
+
+            while (movieSubclassRow.children[0]) {
+                movieSubclassRow.removeChild(movieSubclassRow.children[0]);
+            }
 
             movies.forEach(m => {
                 if (currentMoviesInRowCount == 5 || totalDecks == 0) {

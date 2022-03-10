@@ -11,7 +11,7 @@ let routes = {
     '/login': displayLogin,
     '/logout': logout,
     '/register': displayRegister,
-    '/addMovie': displayAddMovie,
+    '/add-movie': displayAddMovie,
 };
 
 export function navigateTo(path) {
