@@ -72,7 +72,7 @@ export async function getMovieDetailsElement(movie_id) {
                 'X-Authorization': authToken
             }});
 
-        const data = res.json();
+        const data = await res.json();
         if (data.length == 0) {
             buttonsParent.innerHTML += `<a class="btn btn-primary likeBtn" href="#">Like</a>`;
             const likeButton = containerDiv.querySelector('.likeBtn');
@@ -80,12 +80,13 @@ export async function getMovieDetailsElement(movie_id) {
             likeButton.addEventListener('click', likeMovie);
         }
         else {
-            buttonsParent.innerHTML += `<a class="btn btn-primary likedBtn" href="#">Liked ${likes}</a>`;
+            buttonsParent.innerHTML += `<span class="enrolled-span likedSpan" href="#">Liked ${likes}</span>`;
+            const likedSpan = containerDiv.querySelector('.likedSpan');
+            likedSpan.addEventListener('click', dislikeMovie);
         }
     }
 
     
-    const likedSpan = containerDiv.querySelector('.likedSpan');
 
     return containerDiv;
 }
@@ -113,7 +114,7 @@ async function likeMovie(e) {
             }})
             .then(res => res.json())
             .then(data => {
-                return data.length;
+                return data;
             });
 
         const likedSpan = document.createElement('span');
@@ -122,7 +123,6 @@ async function likeMovie(e) {
         likedSpan.addEventListener('click', dislikeMovie);
 
         likeButton.parentNode.appendChild(likedSpan);
-
         likeButton.remove();
 
     } catch (error) {
@@ -159,7 +159,6 @@ async function dislikeMovie(e) {
         likeButton.addEventListener('click', likeMovie);
 
         likedSpan.parentNode.appendChild(likeButton);
-
         likedSpan.remove();
 
     } catch (error) {
