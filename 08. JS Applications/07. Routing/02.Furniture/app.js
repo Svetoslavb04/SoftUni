@@ -6,9 +6,9 @@ import { renderRegisterView } from './src/registerView.js';
 import { renderEditView } from './src/editView.js';
 
 page('/', renderHomeView);
-page('/furniture/:_id', renderDetailsView);
 page('/login', renderLoginView);
 page('/register', renderRegisterView);
+page('/furniture/:_id', renderDetailsView);
 page('/furniture/edit/:_id', renderEditView);
 
 page.start();

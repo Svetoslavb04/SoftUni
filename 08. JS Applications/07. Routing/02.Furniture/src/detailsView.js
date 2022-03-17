@@ -29,7 +29,7 @@ const detailsTemplate = (furniture) => html`
                 <p>Material: <span>mat${furniture.material}</span></p>
                 <div>
                     <a href="/furniture/edit/${furniture._id}" class="btn btn-info">Edit</a>
-                    <a class="btn btn-red" @click=${deleteFurniture.bind(null, furniture._id)}>Delete</a>
+                    <a class="btn btn-red" @click=${deleteFurnitureHandler.bind(null, furniture._id)}>Delete</a>
                 </div>
             </div>
         </div>
@@ -46,10 +46,13 @@ export function renderDetailsView(ctx) {
         });
 }
 
-function deleteFurniture(furniture_id, e) {
+async function deleteFurnitureHandler(furniture_id, e) {
     e.preventDefault();
 
-    deleteFurnitureEntity(furniture_id);
-    
-    page.redirect('/');
+    const confirmText = 'Are you sure you want to delete the furniture?';
+
+    if (confirm(confirmText) == true) {
+        await deleteFurnitureEntity(furniture_id);
+        page.redirect('/');
+    }
 }
