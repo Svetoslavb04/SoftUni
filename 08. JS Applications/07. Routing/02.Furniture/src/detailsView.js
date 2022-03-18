@@ -52,7 +52,7 @@ async function deleteFurnitureHandler(furniture_id, e) {
     const confirmText = 'Are you sure you want to delete the furniture?';
 
     if (confirm(confirmText) == true) {
-        await deleteFurnitureEntity(furniture_id);
-        page.redirect('/');
+        deleteFurnitureEntity(furniture_id)
+            .then(data => page.redirect('/'));
     }
 }

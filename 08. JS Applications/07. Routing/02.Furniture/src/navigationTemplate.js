@@ -10,8 +10,8 @@ export let navigationTemplate = () => {
             <nav>
                 <a id="catalogLink" href="/" class="active">Dashboard</a>
                 <div id="user">
-                    <a id="createLink" href="create.html" >Create Furniture</a>
-                    <a id="profileLink" href="my-furniture.html" >My Publications</a>
+                    <a id="createLink" href="/create" >Create Furniture</a>
+                    <a id="profileLink" href="/my-furniture" >My Publications</a>
                     <a id="logoutBtn" @click=${logoutHandler}>Logout</a>
                 </div>
             </nav>

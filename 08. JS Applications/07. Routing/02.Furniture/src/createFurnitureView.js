@@ -1,6 +1,6 @@
 import { html, render } from '../node_modules/lit-html/lit-html.js';
 import { navigationTemplate } from './navigationTemplate.js';
-import { getFurnitureDetails, editFurniture } from './api.js';
+import { createFurniture } from './api.js';
 import { user } from './auth.js';
 import page from '../node_modules/page/page.mjs';
 
@@ -73,67 +73,61 @@ const validate = {
     },
 }
 
-const editPageTemplate = (furniture) => html`
+const createPageTemplate = () => html`
     ${html`${navigationTemplate()}`}
     <div class="container">
         <div class="row space-top">
             <div class="col-md-12">
-                <h1>Edit Furniture</h1>
+                <h1>Create New Furniture</h1>
                 <p>Please fill all fields.</p>
             </div>
         </div>
-        <form @submit=${editHandler.bind(null, furniture._ownerId)} _id=${furniture._id}>
+        <form @submit=${createHandler}>
             <div class="row space-top">
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form-control-label" for="new-make">Make</label>
-                        <input class="form-control" id="new-make" type="text" name="make" value=${furniture.make}>
+                        <input class="form-control valid" id="new-make" type="text" name="make">
                     </div>
                     <div class="form-group">
                         <label class="form-control-label" for="new-model">Model</label>
-                        <input class="form-control" id="new-model" type="text" name="model" value=${furniture.model}>
+                        <input class="form-control" id="new-model" type="text" name="model">
                     </div>
                     <div class="form-group">
                         <label class="form-control-label" for="new-year">Year</label>
-                        <input class="form-control" id="new-year" type="number" name="year" value=${furniture.year}>
+                        <input class="form-control" id="new-year" type="number" name="year">
                     </div>
                     <div class="form-group">
                         <label class="form-control-label" for="new-description">Description</label>
-                        <input class="form-control" id="new-description" type="text" name="description" value=${furniture.description}>
+                        <input class="form-control" id="new-description" type="text" name="description">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form-control-label" for="new-price">Price</label>
-                        <input class="form-control" id="new-price" type="number" name="price" value=${furniture.price}>
+                        <input class="form-control" id="new-price" type="number" name="price">
                     </div>
                     <div class="form-group">
                         <label class="form-control-label" for="new-image">Image</label>
-                        <input class="form-control" id="new-image" type="text" name="img" value=${furniture.img}>
+                        <input class="form-control" id="new-image" type="text" name="img">
                     </div>
                     <div class="form-group">
                         <label class="form-control-label" for="new-material">Material (optional)</label>
-                        <input class="form-control" id="new-material" type="text" name="material" value=${furniture.material}>
+                        <input class="form-control" id="new-material" type="text" name="material">
                     </div>
-                    <input type="submit" class="btn btn-info" value="Edit" />
+                    <input type="submit" class="btn btn-primary" value="Create" />
                 </div>
             </div>
         </form>
     </div>
 `;
 
-export async function renderEditView(ctx) {
-    const furniture = await getFurnitureDetails(ctx.params._id);
-    
-    render(editPageTemplate(furniture), document.getElementById('root'));
+export async function renderCreateView() {
+    render(createPageTemplate(), document.getElementById('root'));
 }
 
-function editHandler(_ownerId, e) {
+function createHandler(e) {
     e.preventDefault();
-
-    if (_ownerId != user._id) {
-        return;
-    }
 
     const formElements = {
         makeElement: document.querySelector('input[name="make"]'),
@@ -162,19 +156,18 @@ function editHandler(_ownerId, e) {
     if (validatorValues.some(x => x == false)) return;
 
     const furniture = {
-        _ownerId,
+        _ownerId: user._id,
         make: formElements.makeElement.value,
         model: formElements.modelElement.value,
         year: formElements.yearElement.value,
         description: formElements.descriptionElement.value,
         price: formElements.priceElement.value,
         img: formElements.imgElement.value,
-        material: formElements.materialElement.value,
-        _id: e.currentTarget.getAttribute('_id')
+        material: formElements.materialElement.value
     }
 
-    editFurniture(furniture)
+    createFurniture(furniture)
         .then(data => {
-            page.redirect(`/furniture/${furniture._id}`);
+            page.redirect(`/`);
         });
 }
