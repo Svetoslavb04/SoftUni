@@ -1,3 +1,4 @@
+import { logoutUser } from "./api.js";
 export let user = JSON.parse(sessionStorage.getItem('user'));
 
 export function updateAuth(_user) {
@@ -6,6 +7,9 @@ export function updateAuth(_user) {
 }
 
 export function logout() {
-    sessionStorage.removeItem('user');
-    user = undefined;
+    logoutUser()
+        .then(res => {
+            sessionStorage.removeItem('user');
+            user = undefined;
+        });
 }

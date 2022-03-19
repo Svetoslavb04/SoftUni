@@ -67,6 +67,15 @@ export function register(email, password) {
         });
 }
 
+export function logoutUser() {
+    return fetch(`${baseUrl}/users/logout`, {
+        method: 'GET',
+        headers: {
+            'X-Authorization': user.accessToken
+        }
+    });
+}
+
 export function deleteFurnitureEntity(_id) {
     return fetch(`${dataUrl}/${_id}`, {
         method: 'DELETE',
