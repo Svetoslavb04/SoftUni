@@ -8,6 +8,8 @@ import { renderLoginView } from './views/loginView.js';
 import { renderLogoutView } from './views/logoutView.js';
 import { renderCreateView } from './views/createView.js';
 import { renderTeamDetails } from './views/teamDetailsView.js';
+import { renderMyTeamsView } from './views/myTeamsView.js';
+import { renderEditTeamView } from './views/editTeamView.js';
 
 page(authMiddleware);
 page(renderMiddleware);
@@ -19,6 +21,8 @@ page('/login', renderLoginView);
 page('/logout', renderLogoutView);
 page('/create', renderCreateView);
 page('/team/:_id', renderTeamDetails);
+page('/my-teams', renderMyTeamsView);
+page('/edit/:_id', renderEditTeamView);
 
 page.start();
 

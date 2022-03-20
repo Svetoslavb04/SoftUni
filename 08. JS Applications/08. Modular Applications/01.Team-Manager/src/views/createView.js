@@ -68,7 +68,7 @@ function createTeamHandler(e) {
     createTeam(teamName, logoUrl, description)
         .then(data => {
             if (!data.message) {
-                page.redirect(`/team/${data._id}`); //TO REDIRECT TO DETAILS
+                page.redirect(`/team/${data._id}`);
             } else {
                 popNotification(data.message, (e) => {
                     e.preventDefault();

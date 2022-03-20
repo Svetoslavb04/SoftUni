@@ -32,7 +32,7 @@ function loginHandler(e) {
     login(email, password)
         .then(data => {
             if (!data.message) {
-                page.redirect('/');
+                page.redirect('/my-teams');
             } else {
                 popNotification(data.message, (e) => {
                     e.preventDefault();

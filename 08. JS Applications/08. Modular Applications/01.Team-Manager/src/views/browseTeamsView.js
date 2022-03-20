@@ -20,7 +20,7 @@ const browseTeamsTemplate = (ctx, teams) => html`
                         <div class="tm-preview">
                             <h2>${t.name}</h2>
                             <p>${t.description}</p>
-                            <span class="details">${t.members.length}</span>
+                            <span class="details">${t.members.length} Members</span>
                             <div><a href="/team/${t._id}" class="action">See details</a></div>
                         </div>
                     </article>`)

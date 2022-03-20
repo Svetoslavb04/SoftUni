@@ -85,7 +85,7 @@ function registerHandler(e) {
     register(email, username, password)
         .then(data => {
             if (!data.message) {
-                page.redirect('/');
+                page.redirect('/my-teams');
             } else {
                 popNotification(data.message, (e) => {
                     e.preventDefault();
