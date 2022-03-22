@@ -1,9 +1,16 @@
 [
   {
-    "image": null,
-    "name": "dadssa",
-    "description": "sadasd",
-    "breed": "British",
-    "id": 1
+    "name": "Navcho",
+    "description": "Navcho is Ivo`s best friend",
+    "breed": "unique",
+    "image": "./content/images/03fc15951bde6a0f11ab3fd00d.jpg",
+    "id": "1"
+  },
+  {
+    "name": "Peter ",
+    "description": "This is",
+    "breed": "Persian gender",
+    "image": "./content/images/3c902fa0d0ef49cb1b52f8300d.jpg",
+    "id": "2"
   }
 ]
