@@ -22,7 +22,7 @@ http.createServer((req, res) => {
     switch (pathName) {
         case `/content/images/${id}`:
             filePath = path.normalize(
-                path.join(__dirname, `./content/images/${id}`)
+                path.join(__dirname, `/content/images/${id}`)
             );
             
             res.writeHead(200, {
@@ -60,7 +60,7 @@ http.createServer((req, res) => {
                     if (err) return;
                         
                     let catsArr = JSON.parse(cats);
-
+                    
                     let mappedCats = catsArr.map(c => `
                         <li>
                             <img src="${c.image}" alt="Cat">
@@ -68,8 +68,8 @@ http.createServer((req, res) => {
                             <p><span>Breed: </span>${c.breed}</p>
                             <p><span>Description: </span>${c.description}</p>
                             <ul class="buttons">
-                                <li class="btn edit"><a href="">Change Info</a></li>
-                                <li class="btn delete"><a href="">New Home</a></li>
+                                <li class="btn edit"><a href="/cat-edit/${c.id}">Change Info</a></li>
+                                <li class="btn delete"><a href="/cat-find-new-home">New Home</a></li>
                             </ul>
                         </li>
                     `)
@@ -97,7 +97,7 @@ http.createServer((req, res) => {
                 fs.readFile(dataFilePath, 'utf8', (err, data) => {
                     if (err) return;
                     
-                    letbreeds = JSON.parse(data);
+                    let breeds = JSON.parse(data);
                     
                     fs.readFile(filePath, 'utf8', (err, data) => {
                         data = data.replace('{{breedPlaceholder}}', breeds.map(b => `<option value="${b}">${b}</option>`));
@@ -112,20 +112,23 @@ http.createServer((req, res) => {
 
                 form.parse(req, (err, fields, files) => {
                     if (err) return;
+                    
+                    if (files.upload.originalFilename != '') {
+                        let oldPath = files.upload.filepath;
+                        let newPath = path.normalize( path.join(__dirname, `./content/images/${files.upload.newFilename}${files.upload.originalFilename}`));
 
-                    let oldPath = files.upload.filepath;
-                    let newPath = path.normalize( path.join(__dirname, `./content/images/${files.upload.newFilename}${files.upload.originalFilename}`));
-
-                    fs.rename(oldPath, newPath, err => {
+                        fs.rename(oldPath, newPath, err => {
                         if (err) {
                             return;
                         }
-                    });
+                        cat.image = `./content/images/${files.upload.newFilename}${files.upload.originalFilename}`;
 
+                        });
+                    } else { cat.image = null; }
+                    
                     cat.name = fields.name;
                     cat.description = fields.description;
                     cat.breed = fields.breed;
-                    cat.image = `./content/images/${files.upload.newFilename}${files.upload.originalFilename}`;
 
                     let dataFilePath = path.normalize( path.join(__dirname, './data/cats.json'));
 
@@ -133,7 +136,7 @@ http.createServer((req, res) => {
                         if (err) return;
                         
                         let currentData = JSON.parse(data);
-
+                        cat.id = currentData.length + 1;
                         currentData.push(cat);
 
                         const stream = fs.createWriteStream(dataFilePath, 'utf8');
@@ -190,6 +193,90 @@ http.createServer((req, res) => {
                 });
 
                 res.end();
+            }
+            break;
+        case `/cat-edit/${id}`:
+            if (req.method == 'GET') {
+                let filePath = path.normalize( path.join(__dirname, './views/editCat.html'))
+                fs.readFile(filePath, 'utf8', (err, data) => {
+                    if(err) return;
+
+                    let dataFilePath = path.normalize( path.join(__dirname, './data/cats.json'));
+
+                    fs.readFile(dataFilePath, 'utf8', (err, catData) => {
+                        if (err) return;
+
+                        let breedsFilePath = path.normalize( path.join(__dirname, './data/breeds.json'));
+
+                        fs.readFile(breedsFilePath, 'utf8', (err, breeds) => {
+                            if (err) return;
+                            
+                            let breedsArr = JSON.parse(breeds);
+
+                            let cats = JSON.parse(catData);
+                        
+                            let index = cats.findIndex(c => c.id == id);
+
+                            let name = cats[index].name;
+                            let description = cats[index].description;
+
+                            let indexOfBreed = breedsArr.indexOf(cats[index].breed);
+                            breedsArr.splice(indexOfBreed, 1);
+                            breedsArr.unshift(cats[index].breed);
+
+                            data = data.replace(`<form action="" method="POST" class="cat-form" enctype="multipart/form-data">`, `<form action="/cat-edit/${id}" method="POST" class="cat-form" enctype="multipart/form-data">`);
+                            data = data.replace('<input type="text" id="name" value="{{NAME}}">', `<input type="text" id="name" value="${name}">`);
+                            data = data.replace('{{DESCRIPTION}}', description);
+                            data = data.replace('{{BREEDS}}', breedsArr.map(b => `<option value="${b}">${b}</option>`));
+
+                            res.write(data);
+                            res.end();
+                        });
+                    });
+                })
+            } else if(req.method == 'POST') {
+                let form = new formidable.IncomingForm();
+                
+                let cat = {};
+
+                form.parse(req, (err, fields, files) => {
+                    if (files.upload.originalFilename != '') {
+                        let oldPath = files.upload.filepath;
+                        let newPath = path.normalize( path.join(__dirname, `./content/images/${files.upload.newFilename}${files.upload.originalFilename}`));
+
+                        fs.rename(oldPath, newPath, err => {
+                        if (err) {
+                            return;
+                        }
+                        cat.image = `./content/images/${files.upload.newFilename}${files.upload.originalFilename}`;
+
+                        });
+                    } else { cat.image = null; }
+                    
+                    cat.name = fields.name;
+                    cat.description = fields.description;
+                    cat.breed = fields.breed;
+
+                    let dataFilePath = path.normalize( path.join(__dirname, './data/cats.json'));
+
+                    fs.readFile(dataFilePath, 'utf8', (err, data) => {
+                        if (err) return;
+                        
+                        let currentData = JSON.parse(data);
+                        cat.id = currentData.length;
+                        currentData.push(cat);
+
+                        const stream = fs.createWriteStream(dataFilePath, 'utf8');
+                        stream.write(JSON.stringify(currentData, '', 2));
+                        stream.end();
+
+                        res.writeHead(302, {
+                            'Location': '/'
+                        });
+        
+                        res.end();
+                    });
+                });
             }
             break;
         default: 

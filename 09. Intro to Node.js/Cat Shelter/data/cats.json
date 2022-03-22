@@ -1,14 +1,9 @@
 [
   {
-    "name": "Seuthopolis",
-    "description": "dasd",
-    "breed": "Persian gender",
-    "image": "./content/images/a7a5fc8015a86749883159f00d.jpg"
-  },
-  {
-    "name": "Seuthopolis",
-    "description": "dasdasd",
-    "breed": "Persian gender",
-    "image": "./content/images/261a3c1e62392317af91f4100d.jpg"
+    "image": null,
+    "name": "dadssa",
+    "description": "sadasd",
+    "breed": "British",
+    "id": 1
   }
 ]
