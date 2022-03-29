@@ -5,7 +5,7 @@ export const layoutTemplate = (ctx, templateResult) => html`
             <!-- Navigation -->
             <h1><a class="home" href="/">GamesPlay</a></h1>
             <nav>
-                <a href="#">All games</a>
+                <a href="/games">All games</a>
                 <!-- Logged-in users -->
                 ${ctx.isAuthenticated() ?
                     html`<div id="user">
