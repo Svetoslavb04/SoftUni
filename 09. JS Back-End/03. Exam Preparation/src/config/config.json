@@ -1,0 +1,10 @@
+{
+    "development": {
+        "port": 3000,
+        "jwtSecret": "5D8DA1F79A169E5F37D6742E6BF9A"
+    },
+    "production": {
+        "port": 5000,
+        "jwtSecret": "5D8DA1F7DKASKE5F37D6742E6BF9A"
+    }
+}
