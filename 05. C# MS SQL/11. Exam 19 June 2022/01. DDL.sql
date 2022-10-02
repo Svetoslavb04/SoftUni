@@ -1,0 +1,59 @@
+CREATE DATABASE Zoo
+
+USE Zoo
+
+CREATE TABLE Owners (
+	Id INT IDENTITY PRIMARY KEY,
+	Name VARCHAR(50) NOT NULL,
+	PhoneNumber VARCHAR(15) NOT NULL,
+	Address VARCHAR(50),
+)
+
+CREATE TABLE AnimalTypes (
+	Id INT IDENTITY PRIMARY KEY,
+	AnimalType VARCHAR(30) NOT NULL,
+)
+
+CREATE TABLE Cages (
+	Id INT IDENTITY PRIMARY KEY,
+	AnimalTypeId INT NOT NULL,
+
+	CONSTRAINT FK_Cages_AnimalTypeId FOREIGN KEY (AnimalTypeId) REFERENCES AnimalTypes(Id)
+)
+
+CREATE TABLE Animals (
+	Id INT IDENTITY PRIMARY KEY,
+	Name VARCHAR(30) NOT NULL,
+	BirthDate DATE NOT NULL,
+	OwnerId INT,
+	AnimalTypeId INT NOT NULL,
+
+	CONSTRAINT FK_Animals_OwnerId FOREIGN KEY (OwnerId) REFERENCES Owners(Id),
+	CONSTRAINT FK_Animals_AnimalTypeId FOREIGN KEY (AnimalTypeId) REFERENCES AnimalTypes(Id)
+)
+
+CREATE TABLE AnimalsCages (
+	CageId INT NOT NULL,
+	AnimalId INT NOT NULL,
+
+	CONSTRAINT PK_AnimalsCages_CageIdAnimalID PRIMARY KEY (CageId, AnimalId),
+	CONSTRAINT FK_AnimalsCages_CageId FOREIGN KEY (CageId) REFERENCES Cages(Id),
+	CONSTRAINT FK_AnimalsCages_AnimalId FOREIGN KEY (AnimalId) REFERENCES Animals(Id)
+)
+
+CREATE TABLE VolunteersDepartments (
+	Id INT IDENTITY PRIMARY KEY,
+	DepartmentName VARCHAR(30) NOT NULL
+)
+
+CREATE TABLE Volunteers (
+	Id INT IDENTITY PRIMARY KEY,
+	Name VARCHAR(50) NOT NULL,
+	PhoneNumber VARCHAR(15) NOT NULL,
+	Address VARCHAR(50),
+	AnimalId INT,
+	DepartmentId INT NOT NULL,
+
+	CONSTRAINT FK_Volunteers_AnimalId FOREIGN KEY (AnimalId) REFERENCES Animals(Id),
+	CONSTRAINT FK_Volunteers_DepartmentId FOREIGN KEY (DepartmentId) REFERENCES VolunteersDepartments(Id)
+)
