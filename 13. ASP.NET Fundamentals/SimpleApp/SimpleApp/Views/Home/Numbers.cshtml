@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Numbers";
+}
+
+<form method="post">
+    <input name="count" value="@ViewBag.Count" placeholder="Numbers to" />
+    <button type="submit">Submit</button>
+</form>
+
+<ul>
+    @for (var i = 1; i <= ViewBag.Count; i++)
+    {
+        <li>@i</li>
+    }
+</ul>
+
+

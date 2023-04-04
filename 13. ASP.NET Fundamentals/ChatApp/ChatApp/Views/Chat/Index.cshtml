@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Message>
+@{
+    ViewData["Title"] = "All Messages";
+}
+<h1>All Messages</h1>
+
+@{
+    if(!string.IsNullOrEmpty(ViewBag.ErrorMessage)) {
+        <p>@ViewBag.ErrorMessage</p>
+    } else {
+        <p>No Error</p>
+    }
+}
+
+<form method="post">
+    <input name"Text" placeholder="message text"/>
+    <button type="submit">Add message</button>
+</form>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            @item
+        </li>
+    }
+</ul>
